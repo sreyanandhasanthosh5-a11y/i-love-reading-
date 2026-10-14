@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="I Love Reading - Your colourful personal book tracker">
+    <title>I Love Reading | My Reading Space</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="hero">
+        <nav class="navbar">
+            <a class="brand" href="#" aria-label="I Love Reading home">
+                <span class="brand-icon">📚</span>
+                <span>I Love <span class="highlight">Reading</span></span>
+            </a>
+            <span class="nav-note">Your little corner of books ✨</span>
+        </nav>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="eyebrow">YOUR PERSONAL READING SPACE</p>
+                <h1>Every book opens<br> a new <span>world.</span></h1>
+                <p class="hero-description">
+                    Keep your favourite stories close, track your reading journey,
+                    and make every page count.
+                </p>
+            </div>
+            <div class="hero-illustration" aria-hidden="true">📖</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats-grid" aria-label="Reading statistics">
+            <article class="stat-card total-card">
+                <span class="stat-icon">📚</span>
+                <div>
+                    <p>Total Books</p>
+                    <h2 id="total-count">0</h2>
+                </div>
+            </article>
+
+            <article class="stat-card todo-card">
+                <span class="stat-icon">🌷</span>
+                <div>
+                    <p>To Read</p>
+                    <h2 id="todo-count">0</h2>
+                </div>
+            </article>
+
+            <article class="stat-card reading-card">
+                <span class="stat-icon">☕</span>
+                <div>
+                    <p>Reading</p>
+                    <h2 id="reading-count">0</h2>
+                </div>
+            </article>
+
+            <article class="stat-card finished-card">
+                <span class="stat-icon">🎉</span>
+                <div>
+                    <p>Finished</p>
+                    <h2 id="finished-count">0</h2>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel add-panel" aria-labelledby="add-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">GROW YOUR LIBRARY</p>
+                    <h2 id="add-heading">Add a new book <span>✿</span></h2>
+                    <p class="section-description">
+                        What would you love to read next?
+                    </p>
+                </div>
+                <span class="heading-decoration" aria-hidden="true">💌</span>
+            </div>
+
+            <form id="book-form" novalidate>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="book-title">Book title <span>*</span></label>
+                        <input
+                            id="book-title"
+                            name="title"
+                            type="text"
+                            placeholder="e.g. Atomic Habits"
+                            autocomplete="off"
+                            required
+                        >
+                        <small id="title-error" class="error-message"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-author">Author <span>*</span></label>
+                        <input
+                            id="book-author"
+                            name="author"
+                            type="text"
+                            placeholder="e.g. James Clear"
+                            autocomplete="off"
+                            required
+                        >
+                        <small id="author-error" class="error-message"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-status">Reading status</label>
+                        <select id="book-status" name="status">
+                            <option value="To Read">🌷 To Read</option>
+                            <option value="Reading">☕ Reading</option>
+                            <option value="Finished">🎉 Finished</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-button">
+                        <button class="primary-button" type="submit">
+                            <span>＋</span> Add Book
+                        </button>
+                    </div>
+                </div>
+                <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section class="library-section" aria-labelledby="library-heading">
+            <div class="library-heading">
+                <div>
+                    <p class="eyebrow">YOUR COLLECTION</p>
+                    <h2 id="library-heading">My bookshelf <span>♡</span></h2>
+                    <p class="section-description">Every story has a place here.</p>
+                </div>
+            </div>
+
+            <div class="library-controls">
+                <div class="search-wrapper">
+                    <span aria-hidden="true">🔎</span>
+                    <input
+                        type="search"
+                        id="search-input"
+                        placeholder="Search by title or author..."
+                        aria-label="Search books by title or author"
+                    >
+                </div>
+
+                <label class="filter-wrapper">
+                    <span>Show:</span>
+                    <select id="status-filter" aria-label="Filter books by status">
+                        <option value="All">All books</option>
+                        <option value="To Read">To Read</option>
+                        <option value="Reading">Reading</option>
+                        <option value="Finished">Finished</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="book-list" class="book-grid" aria-live="polite"></div>
+        </section>
+
+        <footer class="footer">
+            <p>Made with 💗 and a love for stories.</p>
+            <p class="footer-small">I Love Reading · Your next adventure awaits.</p>
+        </footer>
+    </main>
+</body>
+</html>
