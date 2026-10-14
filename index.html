@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="I Love Reading - Your colourful personal book tracker">
-    <title>I Love Reading | My Reading Space</title>
+    <meta name="description" content="I Love Reading — your personal reading companion">
+    <meta name="theme-color" content="#fff0f6">
+
+    <title>I Love Reading | Your Reading Companion</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <header class="hero">
         <nav class="navbar">
@@ -15,24 +19,49 @@
                 <span class="brand-icon">📚</span>
                 <span>I Love <span class="highlight">Reading</span></span>
             </a>
-            <span class="nav-note">Your little corner of books ✨</span>
+
+            <div class="nav-actions">
+                <span class="nav-note">Your little corner of books ✨</span>
+
+                <button
+                    id="theme-toggle"
+                    class="secondary-button"
+                    type="button"
+                    aria-label="Switch colour theme"
+                >
+                    🌙 Dark mode
+                </button>
+            </div>
         </nav>
 
         <div class="hero-content">
             <div class="hero-text">
                 <p class="eyebrow">YOUR PERSONAL READING SPACE</p>
-                <h1>Every book opens<br> a new <span>world.</span></h1>
+
+                <h1>
+                    Every book opens<br>
+                    a new <span>world.</span>
+                </h1>
+
                 <p class="hero-description">
-                    Keep your favourite stories close, track your reading journey,
-                    and make every page count.
+                    Collect stories, celebrate your progress, and make
+                    every page count. Your next adventure starts here.
                 </p>
+
+                <a class="hero-button" href="#add-book">
+                    ＋ Add a new book
+                </a>
             </div>
+
             <div class="hero-illustration" aria-hidden="true">📖</div>
         </div>
     </header>
 
     <main class="container">
+
+        <!-- READING STATISTICS -->
         <section class="stats-grid" aria-label="Reading statistics">
+
             <article class="stat-card total-card">
                 <span class="stat-icon">📚</span>
                 <div>
@@ -52,7 +81,7 @@
             <article class="stat-card reading-card">
                 <span class="stat-icon">☕</span>
                 <div>
-                    <p>Reading</p>
+                    <p>Currently Reading</p>
                     <h2 id="reading-count">0</h2>
                 </div>
             </article>
@@ -64,50 +93,124 @@
                     <h2 id="finished-count">0</h2>
                 </div>
             </article>
+
         </section>
 
-        <section class="panel add-panel" aria-labelledby="add-heading">
+        <!-- READING GOALS -->
+        <section class="panel goal-panel" aria-labelledby="goal-heading">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR READING JOURNEY</p>
+                    <h2 id="goal-heading">My reading goal 🎯</h2>
+
+                    <p class="section-description">
+                        Small steps, wonderful stories, big achievements.
+                    </p>
+                </div>
+
+                <span class="heading-decoration" aria-hidden="true">🏆</span>
+            </div>
+
+            <form id="goal-form" class="goal-form">
+                <div class="form-group">
+                    <label for="goal-year">Goal year</label>
+                    <input id="goal-year" type="number" min="2000" max="2100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal-target">Books to finish</label>
+                    <input id="goal-target" type="number" min="1" max="10000" required>
+                </div>
+
+                <button class="primary-button" type="submit">
+                    Save my goal
+                </button>
+            </form>
+
+            <div class="goal-progress">
+                <div class="progress-labels">
+                    <span id="goal-progress-text">0 of 12 books finished</span>
+                    <strong id="goal-percentage">0%</strong>
+                </div>
+
+                <div
+                    id="goal-progress-track"
+                    class="progress-track"
+                    role="progressbar"
+                    aria-label="Reading goal progress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                >
+                    <div id="goal-progress-bar" class="progress-bar"></div>
+                </div>
+
+                <p id="goal-message" class="section-description">
+                    Every finished book brings you closer to your goal!
+                </p>
+            </div>
+
+        </section>
+
+        <!-- ADD A BOOK -->
+        <section
+            id="add-book"
+            class="panel add-panel"
+            aria-labelledby="add-heading"
+        >
             <div class="section-heading">
                 <div>
                     <p class="eyebrow">GROW YOUR LIBRARY</p>
                     <h2 id="add-heading">Add a new book <span>✿</span></h2>
+
                     <p class="section-description">
                         What would you love to read next?
                     </p>
                 </div>
+
                 <span class="heading-decoration" aria-hidden="true">💌</span>
             </div>
 
             <form id="book-form" novalidate>
+
                 <div class="form-grid">
+
                     <div class="form-group">
                         <label for="book-title">Book title <span>*</span></label>
+
                         <input
                             id="book-title"
                             name="title"
                             type="text"
                             placeholder="e.g. Atomic Habits"
                             autocomplete="off"
+                            maxlength="150"
                             required
                         >
+
                         <small id="title-error" class="error-message"></small>
                     </div>
 
                     <div class="form-group">
                         <label for="book-author">Author <span>*</span></label>
+
                         <input
                             id="book-author"
                             name="author"
                             type="text"
                             placeholder="e.g. James Clear"
                             autocomplete="off"
+                            maxlength="100"
                             required
                         >
+
                         <small id="author-error" class="error-message"></small>
                     </div>
 
                     <div class="form-group">
                         <label for="book-status">Reading status</label>
+
                         <select id="book-status" name="status">
                             <option value="To Read">🌷 To Read</option>
                             <option value="Reading">☕ Reading</option>
@@ -117,26 +220,37 @@
 
                     <div class="form-group form-button">
                         <button class="primary-button" type="submit">
-                            <span>＋</span> Add Book
+                            ＋ Add Book
                         </button>
                     </div>
+
                 </div>
+
                 <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
             </form>
+
         </section>
 
+        <!-- BOOK LIBRARY -->
         <section class="library-section" aria-labelledby="library-heading">
+
             <div class="library-heading">
                 <div>
                     <p class="eyebrow">YOUR COLLECTION</p>
                     <h2 id="library-heading">My bookshelf <span>♡</span></h2>
-                    <p class="section-description">Every story has a place here.</p>
+
+                    <p class="section-description">
+                        Every story has a place here.
+                    </p>
                 </div>
             </div>
 
+            <!-- SEARCH AND FILTERS -->
             <div class="library-controls">
+
                 <div class="search-wrapper">
                     <span aria-hidden="true">🔎</span>
+
                     <input
                         type="search"
                         id="search-input"
@@ -146,7 +260,8 @@
                 </div>
 
                 <label class="filter-wrapper">
-                    <span>Show:</span>
+                    <span>Status:</span>
+
                     <select id="status-filter" aria-label="Filter books by status">
                         <option value="All">All books</option>
                         <option value="To Read">To Read</option>
@@ -154,15 +269,71 @@
                         <option value="Finished">Finished</option>
                     </select>
                 </label>
+
+                <label class="filter-wrapper">
+                    <span>Collection:</span>
+
+                    <select id="collection-filter" aria-label="Filter favourites">
+                        <option value="All">All books</option>
+                        <option value="Favourites">❤️ Favourites</option>
+                    </select>
+                </label>
+
             </div>
 
+            <!-- BOOK CARDS ARE INSERTED HERE -->
             <div id="book-list" class="book-grid" aria-live="polite"></div>
+
         </section>
 
+        <!-- DATA BACKUP -->
+        <section class="panel backup-panel" aria-labelledby="backup-heading">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR BOOKS, YOUR CONTROL</p>
+                    <h2 id="backup-heading">Library backup 📦</h2>
+
+                    <p class="section-description">
+                        Export your books to keep a backup or import a previous backup.
+                    </p>
+                </div>
+            </div>
+
+            <div class="backup-actions">
+                <button id="export-json" class="secondary-button" type="button">
+                    📥 Export JSON
+                </button>
+
+                <button id="export-csv" class="secondary-button" type="button">
+                    📊 Export CSV
+                </button>
+
+                <label class="secondary-button import-button" for="import-file">
+                    📤 Import backup
+                </label>
+
+                <input
+                    id="import-file"
+                    type="file"
+                    accept=".json,application/json"
+                    hidden
+                >
+            </div>
+
+            <p id="backup-message" class="form-message" role="status" aria-live="polite"></p>
+
+        </section>
+
+        <!-- FOOTER -->
         <footer class="footer">
             <p>Made with 💗 and a love for stories.</p>
-            <p class="footer-small">I Love Reading · Your next adventure awaits.</p>
+
+            <p class="footer-small">
+                I Love Reading · Your next adventure awaits.
+            </p>
         </footer>
+
     </main>
 </body>
 </html>
